@@ -1,4 +1,5 @@
 import '../styles/Letters.scss';
+import PropTypes from "prop-types";
 
 function SolutionLetters(props) {
   const renderSolutionLetters = () => {
@@ -19,4 +20,10 @@ function SolutionLetters(props) {
     </div>
   );
 }
+
+SolutionLetters.propTypes = {
+  word:PropTypes.string. isRequired,
+  userLetters:PropTypes.array.isRequired
+};  
+
 export default SolutionLetters;

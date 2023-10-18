@@ -1,3 +1,7 @@
+import '../styles/Dummy.scss';
+import PropTypes from "prop-types";
+
+
 function Dummy(props) {
     console.log(props);
   return (
@@ -18,4 +22,10 @@ function Dummy(props) {
     </section>
   );
 }
+
+Dummy.propTypes = {
+  number:PropTypes.number. isRequired
+};  
+
 export default Dummy;
+
