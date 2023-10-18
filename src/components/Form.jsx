@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Form.scss';
 
 
-function Form({lastLetter,handleKeyDown,handleChange}) {
+function Form({lastLetter,handleChange}) {
 
     const handleInput =(ev)=>{
         
@@ -13,6 +13,7 @@ function Form({lastLetter,handleKeyDown,handleChange}) {
 
     }
 
+ 
   return (
     <form className="form" onSubmit={(ev) => {
         ev.preventDefault();
@@ -29,7 +30,8 @@ function Form({lastLetter,handleKeyDown,handleChange}) {
       name="last-letter"
       id="last-letter"
       value={lastLetter}
-      onKeyDown={handleKeyDown}
+      onKeyDown={(ev) => {
+        ev.target.setSelectionRange(0, 1)}}
       onChange={handleInput}
     />
   </form>

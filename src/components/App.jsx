@@ -24,9 +24,6 @@ function App() {
 
   // events
 
-  const handleKeyDown = (ev) => {
-    ev.target.setSelectionRange(0, 1);
-  };
 
   const handleChange = (value) => {
       handleLastLetter(value);
@@ -41,8 +38,6 @@ function App() {
       setUserLetters([...userLetters]);
     }
   };
-
-
 
   const getNumberOfErrors = () => {
     const errorLetters = userLetters.filter(
@@ -65,7 +60,6 @@ function App() {
           />
           <Form
           lastLetter={lastLetter}
-          handleKeyDown={handleKeyDown}
           handleChange={handleChange}
           />
 
