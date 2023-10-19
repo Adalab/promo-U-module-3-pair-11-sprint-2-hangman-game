@@ -1,11 +1,11 @@
 import '../styles/Letters.scss';
 import PropTypes from "prop-types";
 
-function SolutionLetters(props) {
+function SolutionLetters({word,userLetters}) {
   const renderSolutionLetters = () => {
-    const wordLetters = props.word.split('');
+    const wordLetters = word.split('');
     return wordLetters.map((letter, index) => {
-      const exists = props.userLetters.includes(letter.toLocaleLowerCase());
+      const exists = userLetters.includes(letter.toLocaleLowerCase());
       return (
         <li key={index} className="letter">
           {exists ? letter : ''}

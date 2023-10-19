@@ -4,12 +4,14 @@ import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
 import Form from './Form';
+import Footer from './Footer';
+import Instructions from './Instructions';
+import Options from './Options';
 // api
 import getWordFromApi from '../services/api';
 // styles
 import '../styles/App.scss';
-
-
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   const [word, setWord] = useState('');
@@ -23,10 +25,8 @@ function App() {
   }, []);
 
   // events
-
-
   const handleChange = (value) => {
-      handleLastLetter(value);
+    handleLastLetter(value);
   };
 
   const handleLastLetter = (value) => {
@@ -46,27 +46,29 @@ function App() {
     return errorLetters.length;
   };
 
-
-
   return (
     <div className="page">
       <Header />
       <main className="main">
-        <section>
-          <SolutionLetters word={word} userLetters={userLetters}/>
-          
-          <ErrorLetters
-          word={word} userLetters={userLetters}
-          />
-          <Form
-          lastLetter={lastLetter}
-          handleChange={handleChange}
-          />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <section>
+                <SolutionLetters word={word} userLetters={userLetters} />
 
-        </section>
-        <Dummy number={getNumberOfErrors()}/>
-       
+                <ErrorLetters word={word} userLetters={userLetters} />
+                <Form lastLetter={lastLetter} handleChange={handleChange} />
+              </section>
+            }
+          />
+          <Route path="/instructions" element={<Instructions />} />
+          <Route path="/options" element={<Options />} />
+        </Routes>
+
+        <Dummy number={getNumberOfErrors()} />
       </main>
+      <Footer />
     </div>
   );
 }

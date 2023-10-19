@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 
 function Dummy(props) {
-    console.log(props);
   return (
     <section className={`dummy error-${props.number}`}>
       <span className="error-13 eye"></span>
