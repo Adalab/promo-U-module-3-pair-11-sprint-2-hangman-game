@@ -1,13 +1,26 @@
-const Options = () => {
+const Options = ({ handleAnacleta, word }) => {
+  const handleChange = (ev) => {
+    const value = ev.target.value;
+    handleAnacleta(value);
+  };
+
   return (
-    <section>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-        provident nisi voluptatem est nostrum optio perferendis doloremque,
-        delectus at, assumenda suscipit sit odio ipsum error consequatur numquam
-        vero impedit nulla?
-      </p>
-    </section>
+    <form onSubmit={(ev) => ev.preventDefault()}>
+      <label className="title" htmlFor="word">
+        Escribe aquí la palabra que hay que adivinar:
+      </label>
+      <input
+        autoFocus
+        autoComplete="off"
+        className="form__input"
+        maxLength="15"
+        type="text"
+        id="word"
+        name="word"
+        onChange={handleChange}
+        value={word}
+      />
+    </form>
   );
 };
 

@@ -12,14 +12,18 @@ import getWordFromApi from '../services/api';
 // styles
 import '../styles/App.scss';
 import { Route, Routes } from 'react-router-dom';
+import Loading from './Loading';
 
 function App() {
   const [word, setWord] = useState('');
   const [userLetters, setUserLetters] = useState([]);
   const [lastLetter, setLastLetter] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getWordFromApi().then((word) => {
+      setIsLoading(false);
       setWord(word);
     });
   }, []);
@@ -27,6 +31,12 @@ function App() {
   // events
   const handleChange = (value) => {
     handleLastLetter(value);
+  };
+
+  const handleAnacleta = (value) => {
+    setWord(value);
+    setLastLetter('');
+    setUserLetters([]);
   };
 
   const handleLastLetter = (value) => {
@@ -48,6 +58,7 @@ function App() {
 
   return (
     <div className="page">
+      <Loading isLoading={isLoading} />
       <Header />
       <main className="main">
         <Routes>
@@ -63,7 +74,10 @@ function App() {
             }
           />
           <Route path="/instructions" element={<Instructions />} />
-          <Route path="/options" element={<Options />} />
+          <Route
+            path="/options"
+            element={<Options handleAnacleta={handleAnacleta} word={word} />}
+          />
         </Routes>
 
         <Dummy number={getNumberOfErrors()} />
